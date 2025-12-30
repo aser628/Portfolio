@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MonoAcc — 악세사리 쇼핑몰</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo" href="#">Mocrwin</a>
+        <input type="checkbox" id="menu-toggle" hidden />
+        <label for="menu-toggle" class="menu-btn">
+          <span></span><span></span><span></span>
+        </label>
+        <nav class="main-nav" role="navigation" aria-label="주 메뉴">
+          <ul>
+            <li><a href="#">신상품</a></li>
+            <li><a href="#">베스트</a></li>
+            <li><a href="#">목걸이</a></li>
+            <li><a href="#">반지</a></li>
+            <li><a href="#">팔찌</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <div class="search">
+            <input
+              type="search"
+              placeholder="검색, 예: 실버 목걸이"
+              aria-label="검색"
+            />
+          </div>
+          <a class="cart" href="#" aria-label="장바구니">🛒</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-inner">
+          <div class="hero-slider">
+            <div class="slides">
+              <div class="slide active">
+                <img src="./img/banner-3.jpg" alt="배너1" />
+                <div class="slide-text">
+                  <p>인기 상품 List</p>
+                  <a class="btn" href="#">보러가기</a>
+                </div>
+              </div>
+            </div>
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="category wrap">
+        <h2>카테고리별 상품</h2>
+        <div class="category-grid">
+          <div class="category-card" data-category="목걸이">목걸이</div>
+          <div class="category-card" data-category="반지">반지</div>
+          <div class="category-card" data-category="팔찌">팔찌</div>
+          <div class="category-card" data-category="귀걸이">귀걸이</div>
+        </div>
+      </section>
+
+      <section class="catalog wrap">
+        <header class="catalog-head">
+          <h2>인기 상품</h2>
+        </header>
+        <div class="product-grid" aria-live="polite">
+          <article class="product-card" data-category="귀걸이">
+            <figure>
+              <img src="./img/a-cross-earring.jpg" alt="크로스 십자가 귀걸이" />
+            </figure>
+            <figcaption>
+              <h3>크로스 십자가 귀걸이</h3>
+              <p>#CELEB PICK #태산</p>
+              <p class="price">₩9,800</p>
+              <p>REVIEW : 0</p>
+            </figcaption>
+          </article>
+
+          <article class="product-card" data-category="목걸이">
+            <figure>
+              <img src="./img/neck.jpg" alt="스마이볼 목걸이" />
+            </figure>
+            <figcaption>
+              <h3>스마이볼 목걸이</h3>
+              <p>#CELEB PICK</p>
+              <p class="price">₩16,800</p>
+              <p>REVIEW : 3</p>
+            </figcaption>
+          </article>
+
+          <article class="product-card" data-category="반지">
+            <figure>
+              <img src="./img/blackring.jpg" alt="블랙 반지" />
+            </figure>
+            <figcaption>
+              <h3>라운드 큐빅 레이스 스틸 반지</h3>
+              <p>#CELEB PICK #태산</p>
+              <p class="price">₩19,900</p>
+              <p>REVIEW : 10</p>
+            </figcaption>
+          </article>
+
+          <article class="product-card" data-category="목걸이">
+            <figure>
+              <img src="./img/neck2.jpg" alt="심플 실버 목걸이" />
+            </figure>
+            <figcaption>
+              <h3>심플 데이지 팔찌</h3>
+              <p>#CELEB PICK</p>
+              <p class="price">₩20,500</p>
+              <p>REVIEW : 12</p>
+            </figcaption>
+          </article>
+
+          <article class="product-card" data-category="반지">
+            <figure>
+              <img src="./img/ring.jpg" alt="해피 앤 새드 반지" />
+            </figure>
+            <figcaption>
+              <h3>해피 앤 새드 반지</h3>
+              <p>#CELEB PICK</p>
+              <p class="price">₩23,500</p>
+              <p>REVIEW : 5</p>
+            </figcaption>
+          </article>
+
+          <article class="product-card" data-category="귀걸이">
+            <figure>
+              <img src="./img/ear-ring.jpg" alt="스틸라이크 반지" />
+            </figure>
+            <figcaption>
+              <h3>스틸라이크 원터치 귀걸이</h3>
+              <p>#CELEB PICK #재현</p>
+              <p class="price">₩13,500</p>
+              <p>REVIEW : 20</p>
+            </figcaption>
+          </article>
+
+          <article class="product-card" data-category="팔찌">
+            <figure>
+              <img src="./img/bracelet.jpg" alt="체인 팔찌" />
+            </figure>
+            <figcaption>
+              <h3>슬림 써지컬 링크체인 팔찌</h3>
+              <p>#CELEB PICK #리우</p>
+              <p class="price">₩15,500</p>
+              <p>REVIEW : 6</p>
+            </figcaption>
+          </article>
+
+          <article class="product-card" data-category="반지">
+            <figure>
+              <img src="./img/piercing-ring.jpg" alt="피어싱 반지" />
+            </figure>
+            <figcaption>
+              <h3>레이어드 투볼룩 피어싱 반지</h3>
+              <p>#CELEB PICK #리우</p>
+              <p class="price">₩5,000</p>
+              <p>REVIEW : 31</p>
+            </figcaption>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div class="footer-left">
+          <p class="brand">MonoAcc</p>
+          <p class="copyright">
+            © <span id="year"></span> MonoAcc. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
