@@ -1,0 +1,274 @@
+:root {
+  --bg: #ffffff;
+  --bg-soft: #ffffff;
+  --text: #111111;
+  --border: #e5e7eb;
+  --muted: #ccc;
+  --accent: #111111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Pretendard, sans-serif;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.profile-img {
+  width: 260px;
+  height: 320px;
+  background: #f3f3f3;
+  border-radius: 32px;
+  position: relative;
+}
+
+.profile-img::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 24px;
+
+  background-image: url("./photo.jpg");
+  background-size: cover;
+  background-position: center;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  transition: transform 0.4s ease;
+}
+
+.profile-img:hover::before {
+  transform: scale(1.03);
+}
+
+.container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.page {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+  background: var(--bg);
+}
+
+.dots-nav {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 100;
+}
+
+.dots-nav span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--muted);
+  cursor: pointer;
+  transition: transform .3s, background .3s;
+}
+
+.dots-nav span.active {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+.hero {
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 72px;
+  font-weight: 800;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tags span {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.about {
+  gap: 60px;
+}
+
+.profile-img {
+  width: 260px;
+  height: 260px;
+  background: #f3f4f6;
+  border-radius: 20px;
+}
+
+.about-group .title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.project {
+  padding: 0;
+  background: #ffffff;
+  position: relative;
+}
+
+.project iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.project-info {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  background: rgba(17, 17, 17, 0.75);
+  color: #ffffff;
+  padding: 20px 26px;
+  border-radius: 14px;
+  z-index: 10;
+}
+
+.project-info button {
+  margin-top: 10px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.project-link {
+  display: flex;
+  justify-content: center;
+}
+
+.project-link a {
+  text-decoration: none;
+  color: #111;
+  text-align: center;
+}
+
+.project-link img {
+  width: 820px;
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  transition: transform .4s ease;
+}
+
+.project-link img:hover {
+  transform: scale(1.03);
+}
+
+.project-link span {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.artwork {
+  flex-direction: column;
+}
+
+.art-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.art-grid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: transform .4s, box-shadow .4s;
+}
+
+.art-grid img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.album {
+  flex-direction: column;
+  text-align: center;
+  background: #ffffff;
+}
+
+.album h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.album-image {
+  margin-top: 40px;
+  width: 420px;
+  max-width: 90%;
+}
+
+.album-image img {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease;
+}
+
+.album-image img:hover {
+  transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 40px;
+    flex-direction: column;
+  }
+
+  .about {
+    gap: 30px;
+  }
+
+  .art-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dots-nav {
+    right: 16px;
+  }
+}
+
+
