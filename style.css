@@ -33,11 +33,9 @@ body {
   position: absolute;
   inset: 18px;
   border-radius: 24px;
-
   background-image: url("./photo.jpg");
   background-size: cover;
   background-position: center;
-
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
   transition: transform 0.4s ease;
 }
@@ -133,12 +131,6 @@ body {
   position: relative;
 }
 
-.project iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
 .project-info {
   position: absolute;
   top: 40px;
@@ -150,17 +142,10 @@ body {
   z-index: 10;
 }
 
-.project-info button {
-  margin-top: 10px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
 .project-link {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .project-link a {
@@ -187,6 +172,7 @@ body {
   font-size: 16px;
   font-weight: 600;
 }
+
 .artwork {
   flex-direction: column;
 }
@@ -252,6 +238,72 @@ body {
   transform: scale(1.04);
 }
 
+/* 슬라이더 스타일 */
+.project-link.slider .slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.project-link.slider .slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.project-link.slider .slide span {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.project-link.slider .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.project-link.slider .arrow.prev { left: 10px; }
+.project-link.slider .arrow.next { right: 10px; }
+
+.project-link.slider .dots {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.project-link.slider .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  cursor: pointer;
+}
+
+.project-link.slider .dot.active {
+  background: #fff;
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 40px;
@@ -270,5 +322,158 @@ body {
     right: 16px;
   }
 }
+/* ===== Figma Popup ===== */
+.figma-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 999;
+}
 
+.figma-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.95);
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .35s ease;
+  z-index: 1000;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.figma-modal img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* ===== Figma Popup (FIXED) ===== */
+
+.figma-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 999;
+}
+
+.figma-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.figma-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.95);
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .35s ease;
+  z-index: 1000;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.figma-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.figma-modal img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.figma-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+.figma-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 30;
+
+  display: none;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 모바일 숨김 */
+@media (max-width: 768px) {
+  .figma-btn {
+    display: none !important;
+  }
+}
+/* ===== Figma Popup ===== */
+.figma-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 9998;
+}
+
+.figma-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.figma-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #fff;
+  width: 80vw;
+  max-width: 900px;
+  height: 80vh;
+  border-radius: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.figma-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
 

@@ -39,6 +39,89 @@
       .ml1 .line2 {
         bottom: 0;
       }
+      /* project-link slider styles */
+      .project-link.slider {
+        position: relative;
+        max-width: 720px;
+        margin: 24px auto 0;
+        overflow: hidden;
+      }
+
+      .project-link.slider .slides {
+        display: flex;
+        transition: transform 0.5s ease;
+        will-change: transform;
+      }
+
+      .project-link.slider .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      .project-link.slider img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .project-link.slider .slide span {
+        position: absolute;
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .project-link.slider .prev,
+      .project-link.slider .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .project-link.slider .prev {
+        left: 12px;
+      }
+      .project-link.slider .next {
+        right: 12px;
+      }
+
+      .project-link.slider .dots {
+        position: absolute;
+        left: 50%;
+        bottom: 8px;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+
+      .project-link.slider .dot {
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .project-link.slider .dot.active {
+        background: #fff;
+      }
     </style>
   </head>
   <body>
@@ -86,14 +169,48 @@
           <p>HTML / CSS / JS</p>
         </div>
 
-        <div class="project-link">
-          <a href="https://aser628.github.io/Mocrwin/" target="_blank">
-            <img
-              src="./HEYHORONG/img/banner-3.jpg"
-              alt="Mocrwin 웹사이트 미리보기"
-            />
-            <span>View Website</span>
-          </a>
+        <div class="project-link slider">
+          <button class="figma-btn">Figma</button>
+          <div class="slides">
+            <a
+              class="slide"
+              href="https://aser628.github.io/Mocrwin/"
+              target="_blank"
+            >
+              <img
+                src="./HEYHORONG/img/banner-3.jpg"
+                alt="Mocrwin 웹사이트 미리보기"
+              />
+              <span>MOCRWIN site open</span>
+            </a>
+            <a
+              class="slide"
+              href="https://aser628.github.io/shoppingmall/"
+              target="_blank"
+            >
+              <img src="./m.site/img/banner.jpg" alt="MOA 웹사이트 미리보기" />
+              <span>MOA site open</span>
+            </a>
+          </div>
+          <button class="prev" aria-label="Previous">‹</button>
+          <button class="next" aria-label="Next">›</button>
+
+          <div class="dots"></div>
+          <!-- Figma Components Popup Trigger (MOA에서만 노출됨) -->
+        <button class="figma-btn" aria-label="View Figma Components">
+          <img src="./figma-icon.svg" alt="Figma" />
+        </button>
+        </div>
+        
+
+        <!-- Figma Popup -->
+        <div class="figma-backdrop"></div>
+
+        <div class="figma-modal">
+          <button class="figma-close">×</button>
+          <img src="./Components.jpg" alt="Figma Design" />
+        </div>
+
         </div>
       </section>
 
@@ -136,6 +253,83 @@
         duration: 2000,
         delay: (el, i) => 50 * i,
       });
+    </script>
+    <script>
+      (function () {
+        const slider = document.querySelector(".project-link.slider");
+        if (!slider) return;
+
+        const slidesContainer = slider.querySelector(".slides");
+        const slides = Array.from(slidesContainer.querySelectorAll(".slide"));
+        const prevBtn = slider.querySelector(".prev");
+        const nextBtn = slider.querySelector(".next");
+        const dotsContainer = slider.querySelector(".dots");
+        let index = 0;
+        let intervalId = null;
+
+        function goTo(i) {
+          index = (i + slides.length) % slides.length;
+          slidesContainer.style.transform = `translateX(${-index * 100}%)`;
+          updateDots();
+        }
+
+        function prev() {
+          goTo(index - 1);
+        }
+        function next() {
+          goTo(index + 1);
+        }
+
+        function createDots() {
+          slides.forEach((_, i) => {
+            const d = document.createElement("button");
+            d.className = "dot";
+            d.type = "button";
+            d.addEventListener("click", () => {
+              goTo(i);
+              resetAutoplay();
+            });
+            dotsContainer.appendChild(d);
+          });
+        }
+
+        function updateDots() {
+          const dots = Array.from(dotsContainer.children);
+          dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        }
+
+        function startAutoplay() {
+          stopAutoplay();
+          intervalId = setInterval(() => next(), 4000);
+        }
+
+        function stopAutoplay() {
+          if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+          }
+        }
+
+        function resetAutoplay() {
+          startAutoplay();
+        }
+
+        prevBtn.addEventListener("click", () => {
+          prev();
+          resetAutoplay();
+        });
+        nextBtn.addEventListener("click", () => {
+          next();
+          resetAutoplay();
+        });
+
+        createDots();
+        goTo(0);
+        startAutoplay();
+
+        slider.addEventListener("mouseenter", stopAutoplay);
+        slider.addEventListener("mouseleave", startAutoplay);
+      })();
     </script>
   </body>
 </html>
