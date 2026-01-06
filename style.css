@@ -1,3 +1,6 @@
+/* ===================================
+   BASE STYLES
+   =================================== */
 :root {
   --bg: #ffffff;
   --bg-soft: #ffffff;
@@ -18,6 +21,91 @@ body {
   overflow: hidden;
   color: var(--text);
   background: var(--bg);
+}
+
+
+/* ===================================
+   LAYOUT
+   =================================== */
+.container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.page {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+  background: var(--bg);
+}
+
+
+/* ===================================
+   NAVIGATION DOTS
+   =================================== */
+.dots-nav {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 100;
+}
+
+.dots-nav span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--muted);
+  cursor: pointer;
+  transition: transform .3s, background .3s;
+}
+
+.dots-nav span.active {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+
+/* ===================================
+   PAGE 1: HERO
+   =================================== */
+.hero {
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 72px;
+  font-weight: 800;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tags span {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  font-size: 14px;
+}
+
+
+/* ===================================
+   PAGE 2: ABOUT
+   =================================== */
+.about {
+  gap: 60px;
 }
 
 .profile-img {
@@ -44,87 +132,15 @@ body {
   transform: scale(1.03);
 }
 
-.container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-}
-
-.page {
-  height: 100vh;
-  scroll-snap-align: start;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 80px;
-  background: var(--bg);
-}
-
-.dots-nav {
-  position: fixed;
-  right: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  z-index: 100;
-}
-
-.dots-nav span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--muted);
-  cursor: pointer;
-  transition: transform .3s, background .3s;
-}
-
-.dots-nav span.active {
-  background: var(--accent);
-  transform: scale(1.2);
-}
-
-.hero {
-  flex-direction: column;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 72px;
-  font-weight: 800;
-}
-
-.tags {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.tags span {
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  font-size: 14px;
-}
-
-.about {
-  gap: 60px;
-}
-
-.profile-img {
-  width: 260px;
-  height: 260px;
-  background: #f3f4f6;
-  border-radius: 20px;
-}
-
 .about-group .title {
   font-weight: 700;
   margin-bottom: 8px;
 }
 
+
+/* ===================================
+   PAGE 3: WEB PROJECT
+   =================================== */
 .project {
   padding: 0;
   background: #ffffff;
@@ -173,72 +189,7 @@ body {
   font-weight: 600;
 }
 
-.artwork {
-  flex-direction: column;
-}
-
-.art-grid {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
-  max-width: 1000px;
-}
-
-.art-grid img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 16px;
-  transition: transform .4s, box-shadow .4s;
-}
-
-.art-grid img:hover {
-  transform: scale(1.04);
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-}
-
-.fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity .8s ease, transform .8s ease;
-}
-
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.album {
-  flex-direction: column;
-  text-align: center;
-  background: #ffffff;
-}
-
-.album h2 {
-  font-size: 36px;
-  font-weight: 700;
-}
-
-.album-image {
-  margin-top: 40px;
-  width: 420px;
-  max-width: 90%;
-}
-
-.album-image img {
-  width: 100%;
-  border-radius: 24px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-  transition: transform 0.4s ease;
-}
-
-.album-image img:hover {
-  transform: scale(1.04);
-}
-
-/* 슬라이더 스타일 */
+/* Project Slider */
 .project-link.slider .slides {
   display: flex;
   transition: transform 0.5s ease;
@@ -263,7 +214,8 @@ body {
   font-size: 14px;
 }
 
-.project-link.slider .arrow {
+.project-link.slider .prev,
+.project-link.slider .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -278,10 +230,16 @@ body {
   align-items: center;
   cursor: pointer;
   z-index: 10;
+  border: none;
 }
 
-.project-link.slider .arrow.prev { left: 10px; }
-.project-link.slider .arrow.next { right: 10px; }
+.project-link.slider .prev { 
+  left: 10px; 
+}
+
+.project-link.slider .next { 
+  right: 10px; 
+}
 
 .project-link.slider .dots {
   position: absolute;
@@ -298,131 +256,22 @@ body {
   border-radius: 50%;
   background: rgba(255,255,255,0.6);
   cursor: pointer;
+  border: none;
 }
 
 .project-link.slider .dot.active {
   background: #fff;
 }
 
-@media (max-width: 768px) {
-  .page {
-    padding: 40px;
-    flex-direction: column;
-  }
-
-  .about {
-    gap: 30px;
-  }
-
-  .art-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dots-nav {
-    right: 16px;
-  }
-}
-/* ===== Figma Popup ===== */
-.figma-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s ease;
-  z-index: 999;
-}
-
-.figma-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(.95);
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: .35s ease;
-  z-index: 1000;
-  max-width: 90vw;
-  max-height: 90vh;
-}
-
-.figma-modal img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-/* ===== Figma Popup (FIXED) ===== */
-
-.figma-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s ease;
-  z-index: 999;
-}
-
-.figma-backdrop.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.figma-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(.95);
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all .35s ease;
-  z-index: 1000;
-  max-width: 90vw;
-  max-height: 90vh;
-}
-
-.figma-modal.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.figma-modal img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-.figma-close {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-
+/* Figma Button */
 .figma-btn {
   position: absolute;
   top: 20px;
   right: 20px;
   z-index: 30;
-
   display: none;
   align-items: center;
   gap: 6px;
-
   padding: 10px 14px;
   border-radius: 12px;
   border: none;
@@ -432,13 +281,7 @@ body {
   cursor: pointer;
 }
 
-/* 모바일 숨김 */
-@media (max-width: 768px) {
-  .figma-btn {
-    display: none !important;
-  }
-}
-/* ===== Figma Popup ===== */
+/* Figma Popup */
 .figma-backdrop {
   position: fixed;
   inset: 0;
@@ -477,3 +320,667 @@ body {
   transform: translate(-50%, -50%) scale(1);
 }
 
+.figma-modal img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.figma-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+/* ===================================
+   PAGE 4: ARTWORK (책 넘김)
+   =================================== */
+.artwork {
+  flex-direction: column;
+}
+
+.artwork-slider {
+  width: 600px;
+  height: 600px;
+  perspective: 2000px;
+  margin: 40px auto;
+  position: relative;
+  overflow: visible;
+}
+
+.artwork-slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.artwork-slide {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: 20px;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+  box-shadow: 
+    8px 8px 20px rgba(0, 0, 0, 0.15),
+    -2px 0 8px rgba(0, 0, 0, 0.05);
+  border-left: 3px solid #e5e5e5;
+  z-index: auto;
+}
+
+.artwork-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to left, 
+    rgba(0, 0, 0, 0.15) 0%, 
+    rgba(0, 0, 0, 0.08) 30%,
+    transparent 100%);
+  border-radius: 0 20px 20px 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.artwork-slide:hover::before {
+  opacity: 1;
+}
+
+.artwork-slide::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(to left,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 100%);
+  border-radius: 0 20px 20px 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.artwork-slide:hover::after {
+  opacity: 1;
+}
+
+.artwork-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  pointer-events: none;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.artwork-slide.flipped {
+  transform: rotateY(-165deg);
+  box-shadow: 
+    -30px 15px 50px rgba(0, 0, 0, 0.3),
+    -5px 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1 !important;
+  border-left: none;
+  border-right: 3px solid #d0d0d0;
+}
+
+.artwork-slide.flipped::before {
+  opacity: 0;
+}
+
+/* Album Preview Button & Popup */
+.album-preview-btn {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  padding: 12px 24px;
+  background: rgba(17, 17, 17, 0.85);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.album-preview-btn:hover {
+  background: rgba(17, 17, 17, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.album-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 400px;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+.album-popup.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.album-popup img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  padding: 0;
+}
+
+.album-popup::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+.artwork-slide.flipped .album-preview-btn {
+  display: none;
+}
+
+/* 클릭 유도 말풍선 */
+.click-bubble {
+  position: absolute;
+  top: 50%;
+  right: -100px;
+  transform: translateY(-50%);
+  z-index: 200;
+  animation: bubble-bounce 1.5s ease-in-out infinite;
+}
+
+.click-bubble span {
+  display: block;
+  background: #FF6B6B;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+  position: relative;
+}
+
+/* 말풍선 꼬리 */
+.click-bubble span::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #FF6B6B;
+}
+
+/* 통통 튀는 애니메이션 */
+@keyframes bubble-bounce {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.1);
+  }
+}
+
+/* 클릭하면 사라지는 효과 */
+.click-bubble.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .click-bubble {
+    top: auto;
+    bottom: -60px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  
+  .click-bubble span::before {
+    left: 50%;
+    top: -8px;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FF6B6B;
+    border-top: none;
+  }
+}
+/* 처음으로 돌아가기 버튼 */
+.reset-button {
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 200;
+}
+
+.reset-button.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reset-button:hover {
+  background: #45a049;
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5);
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .reset-button {
+    bottom: -120px;
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
+
+
+/* ===================================
+   PAGE 5: CARD NEWS COMPARISON
+   =================================== */
+.album {
+  flex-direction: column;
+  background: #ffffff;
+  padding: 60px 40px;
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.album h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.album-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* 데스크탑/모바일 전환 */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.cardnews-compare {
+  gap: 50px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cardnews-item.old {
+  flex: 0 0 300px;
+  max-width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.cardnews-item.new {
+  flex: 1;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-bottom: 40px;
+}
+
+.cardnews-item {
+  position: relative;
+}
+
+.year-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(17, 17, 17, 0.85);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.year-badge.new {
+  background: #4CAF50;
+}
+
+.cardnews-item.old img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.cardnews-item.old img:hover {
+  transform: scale(1.02);
+}
+
+.cardnews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.cardnews-grid img {
+  width: 100%;
+  height: auto;
+  max-height: 260px;  
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease;
+}
+
+.cardnews-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* 색상 설명 박스 */
+.color-explanation {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  border-top: 2px solid #e5e5e5;
+}
+
+.color-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.color-circle.blue {
+  background: #0066B3;
+}
+
+.color-circle.yellow {
+  background: #F4BF4F;
+}
+
+.color-circle.orange {
+  background: #B1B1B1;
+}
+
+.color-box p {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cardnews-item h5,
+.cardnews-slider h5 {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 15px;
+  margin-bottom: 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* 모바일 슬라이더 */
+.cardnews-slider {
+  position: relative;
+  max-width: 90vw;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.cardnews-slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.cardnews-slider-item {
+  min-width: 100%;
+  position: relative;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.cardnews-slider-item img {
+  width: 100%;
+  height: auto;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.year-badge-mobile {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  background: rgba(17, 17, 17, 0.85);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.year-badge-mobile.new {
+  background: #4CAF50;
+}
+
+.cardnews-prev,
+.cardnews-next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardnews-prev {
+  left: 5px;
+}
+
+.cardnews-next {
+  right: 5px;
+}
+
+.cardnews-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.cardnews-dots .dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+.cardnews-dots .dot.active {
+  background: #111;
+}
+
+
+/* ===================================
+   UTILITY
+   =================================== */
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===================================
+   MOBILE STYLES
+   =================================== */
+@media (max-width: 768px) {
+  /* Layout */
+  .page {
+    padding: 40px;
+    flex-direction: column;
+  }
+
+  /* Navigation */
+  .dots-nav {
+    right: 16px;
+  }
+
+  /* About */
+  .about {
+    gap: 30px;
+  }
+
+  /* Figma */
+  .figma-btn {
+    display: none !important;
+  }
+
+  /* Artwork */
+  .artwork-slider {
+    width: 90vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+    overflow: hidden;
+  }
+
+  .album-preview-btn {
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  
+  .album-popup {
+    width: 90vw;
+    max-width: 90vw;
+    padding: 20px;
+  }
+
+  /* Card News - 모바일 슬라이더로 전환 */
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block !important;
+  }
+
+  .album {
+    padding: 40px 10px;
+    overflow: hidden;
+  }
+
+  .color-explanation {
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+
+  .color-box {
+    gap: 6px;
+  }
+
+  .color-circle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .color-box p {
+    font-size: 12px;
+  }
+}
