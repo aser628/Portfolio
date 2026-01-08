@@ -122,6 +122,11 @@ fades.forEach(el => observer.observe(el));
     e.stopPropagation();
     modal.classList.add("active");
     backdrop.classList.add("active");
+    // set link inside modal to point to the figma URL from the button (if provided)
+    const figmaOpenLink = modal.querySelector('.poster-figma-open-link');
+    if (figmaOpenLink && figmaBtn.dataset && figmaBtn.dataset.figmaUrl) {
+      figmaOpenLink.href = figmaBtn.dataset.figmaUrl;
+    }
   });
 
   function closeModal() {
@@ -327,4 +332,140 @@ fades.forEach(el => observer.observe(el));
 
   createDots();
   goTo(0);
+})();
+
+// ===== Poster Mobile Slider =====
+(function() {
+  const slider = document.querySelector('.poster-slider');
+  if (!slider) return;
+
+  const track = slider.querySelector('.poster-slider-track');
+  const slides = Array.from(track.querySelectorAll('.poster-slide'));
+  const prevBtn = slider.querySelector('.poster-prev');
+  const nextBtn = slider.querySelector('.poster-next');
+  const dotsContainer = slider.querySelector('.poster-dots');
+  let index = 0;
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(${-index * 100}%)`;
+    updateDots();
+  }
+
+  function prev() {
+    goTo(index - 1);
+  }
+
+  function next() {
+    goTo(index + 1);
+  }
+
+  function createDots() {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot';
+      dot.type = 'button';
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function updateDots() {
+    const dots = Array.from(dotsContainer.children);
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  createDots();
+  goTo(0);
+})();
+
+// ===== Poster Figma Popup =====
+(function() {
+  const figmaBtn = document.querySelector('.poster-figma-btn-top');
+  const modal = document.querySelector('.poster-figma-modal');
+  const backdrop = document.querySelector('.poster-figma-backdrop');
+  const closeBtn = document.querySelector('.poster-figma-close');
+
+  if (!figmaBtn || !modal || !backdrop) return;
+
+
+  figmaBtn.addEventListener('click', () => {
+    // set modal link and optional preview image from data attributes
+    const figmaOpenLink = modal.querySelector('.poster-figma-open-link');
+    const previewImg = modal.querySelector('.poster-figma-preview');
+    if (figmaOpenLink && figmaBtn.dataset && figmaBtn.dataset.figmaUrl) {
+      figmaOpenLink.href = figmaBtn.dataset.figmaUrl;
+    }
+    if (previewImg && figmaBtn.dataset && figmaBtn.dataset.preview) {
+      previewImg.src = figmaBtn.dataset.preview;
+    }
+
+    modal.classList.add('active');
+    backdrop.classList.add('active');
+    backdrop.setAttribute('aria-hidden', 'false');
+  });
+
+  // Allow clicking individual poster slides to open modal with that slide's image and link
+  const posterSliderEl = document.querySelector('.poster-slider');
+  if (posterSliderEl) {
+    const posterSlides = Array.from(posterSliderEl.querySelectorAll('.poster-slide'));
+    posterSlides.forEach(slide => {
+      slide.addEventListener('click', (e) => {
+        // if the click target is a button inside slide, ignore
+        if (e.target.closest('button')) return;
+
+        const previewImg = modal.querySelector('.poster-figma-preview');
+        const openLink = modal.querySelector('.poster-figma-open-link');
+        const img = slide.querySelector('img');
+
+        if (previewImg && img && img.src) previewImg.src = img.src;
+
+        // slide-specific figma link (data-figma-url) takes precedence
+        const slideFigma = slide.dataset && slide.dataset.figmaUrl;
+        if (openLink) {
+          openLink.href = slideFigma || (figmaBtn.dataset && figmaBtn.dataset.figmaUrl) || '#';
+        }
+
+        modal.classList.add('active');
+        backdrop.classList.add('active');
+        backdrop.setAttribute('aria-hidden', 'false');
+      });
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    backdrop.classList.remove('active');
+  }
+
+  backdrop.addEventListener('click', closeModal);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
+
+// ===== Hero 텍스트 애니메이션 (moved from inline) =====
+(function() {
+  const textWrapper = document.querySelector('.ml1');
+  if (!textWrapper) return;
+  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+  if (typeof anime !== 'undefined') {
+    anime.timeline({ loop: true }).add({
+      targets: '.ml1 .letter',
+      translateY: ['1.2em', 0],
+      opacity: [0, 1],
+      easing: 'easeOutExpo',
+      duration: 2000,
+      delay: (el, i) => 50 * i,
+    });
+  }
 })();
