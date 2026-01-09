@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- 네비게이션 점 -->
+    <!-- ===================================
+         NAVIGATION DOTS
+         =================================== -->
     <div class="dots-nav">
       <span class="active"></span>
       <span></span>
@@ -18,7 +20,9 @@
     </div>
 
     <main class="container">
-      <!-- 1페이지: Hero -->
+      <!-- ===================================
+           PAGE 1: HERO
+           =================================== -->
       <section class="page hero">
         <h1 class="ml1">
           <span class="line line1"></span>
@@ -32,7 +36,9 @@
         </div>
       </section>
 
-      <!-- 2페이지: About -->
+      <!-- ===================================
+           PAGE 2: ABOUT
+           =================================== -->
       <section class="page about">
         <div class="profile-img"></div>
         <div class="about-group">
@@ -49,7 +55,9 @@
         </div>
       </section>
 
-      <!-- 3페이지: Web Project -->
+      <!-- ===================================
+           PAGE 3: WEB PROJECT
+           =================================== -->
       <section class="page project">
         <div class="project-info">
           <h2>Web Project</h2>
@@ -82,13 +90,13 @@
           <button class="next" aria-label="Next">›</button>
           <div class="dots"></div>
 
-          <!-- Figma 버튼 (MOA에서만 표시) -->
+          <!-- Figma 버튼 (MOA 슬라이드에서만 표시) -->
           <button class="figma-btn" aria-label="View Figma Components">
             <img src="./figma-icon.png" alt="Figma" />
           </button>
         </div>
 
-        <!-- Figma 팝업 -->
+        <!-- Figma 팝업 (모달) -->
         <div class="figma-backdrop"></div>
         <div class="figma-modal">
           <button class="figma-close">×</button>
@@ -96,7 +104,9 @@
         </div>
       </section>
 
-      <!-- 4페이지: Artwork (책 넘김 효과) -->
+      <!-- ===================================
+           PAGE 4: ARTWORK (책 넘김 효과)
+           =================================== -->
       <section class="page artwork">
         <h2>CD album</h2>
 
@@ -107,7 +117,7 @@
           <button class="reset-button">처음으로 돌아가기</button>
 
           <div class="artwork-slides">
-            <!-- 작업물 1 - 앨범 예시 있음 -->
+            <!-- 작업물 1 -->
             <div class="artwork-slide has-album">
               <img src="./saycheese/logo+character4.jpg" alt="작업물1" />
               <button class="album-preview-btn">예시보기</button>
@@ -116,7 +126,7 @@
               </div>
             </div>
 
-            <!-- 작업물 2 - 앨범 예시 있음 -->
+            <!-- 작업물 2 -->
             <div class="artwork-slide has-album">
               <img src="./saycheese/logo+character3.jpg" alt="작업물2" />
               <button class="album-preview-btn">예시보기</button>
@@ -142,115 +152,151 @@
         </div>
       </section>
 
-      <!-- 5페이지: Card News Redesign -->
-      <section class="page album">
-        <h2>Card News Redesign</h2>
-        <p class="album-subtitle">2020 → 2026 비교</p>
+      <!-- ===================================
+     PAGE 5: CARD NEWS REDESIGN
+     =================================== -->
+<section class="page cardnews">
+  <h2>Card News Redesign</h2>
+  <p class="album-subtitle">2020 → 2026 비교</p>
 
-        <!-- 데스크탑 레이아웃 -->
-        <div class="cardnews-compare desktop-only">
-          <!-- 2020년 버전 (왼쪽, 작게) -->
-          <div class="cardnews-item old">
+  <div class="cardnews-wrapper">
+    <div class="cardnews-container">
+      <!-- 모바일용 슬라이더만 -->
+      <div class="cardnews-slider-wrapper mobile-slider" data-slider="all">
+        <div class="cardnews-slider-track">
+          <div class="cardnews-slider-item">
             <span class="year-badge">2020</span>
             <img src="./cardnews/2020br.jpg" alt="2020년 카드뉴스" />
           </div>
-
-          <!-- 2026년 버전 (오른쪽, 4개 그리드) -->
-          <div class="cardnews-item new">
-            <span class="year-badge new">2026</span>
-            <div class="cardnews-grid">
-              <img src="./cardnews/2026-1.jpg" alt="2026 카드1" />
-              <img src="./cardnews/2026-2.jpg" alt="2026 카드2" />
-              <img src="./cardnews/2026-3.jpg" alt="2026 카드3" />
-              <img src="./cardnews/2026-4.jpg" alt="2026 카드4" />
-            </div>
-
-            <div class="color-explanation">
-              <div class="color-box">
-                <span class="color-circle blue"></span>
-                <p>#0066B3</p>
+          
+          <div class="cardnews-slider-item">
+            <div class="cardnews-grid-2026">
+              <div class="cardnews-card">
+                <div class="cardnews-card-header">
+                  <span class="cardnews-tab">2026-1</span>
+                </div>
+                <div class="cardnews-card-body">
+                  <img src="./cardnews/2026-1.jpg" alt="2026 카드1" />
+                </div>
               </div>
-              <div class="color-box">
-                <span class="color-circle yellow"></span>
-                <p>#34BAF</p>
+              <div class="cardnews-card">
+                <div class="cardnews-card-header">
+                  <span class="cardnews-tab">2026-2</span>
+                </div>
+                <div class="cardnews-card-body">
+                  <img src="./cardnews/2026-2.jpg" alt="2026 카드2" />
+                </div>
               </div>
-              <div class="color-box">
-                <span class="color-circle orange"></span>
-                <p>#B1B1B1</p>
+              <div class="cardnews-card">
+                <div class="cardnews-card-header">
+                  <span class="cardnews-tab">2026-3</span>
+                </div>
+                <div class="cardnews-card-body">
+                  <img src="./cardnews/2026-3.jpg" alt="2026 카드3" />
+                </div>
               </div>
-            </div>
-
-            <div class="cardnews-bottom">
-              <h5>학교 마크를 참고하여, 대표적인 색상으로 카드뉴스 생성</h5>
-              <a
-                href="https://www.figma.com/design/xNFk8SkskhUvyCMr5epHWg/Cardnews?node-id=1-6&t=340ePv0L7XDpMafe-0"
-                target="_blank"
-                class="cardnews-link-btn"
-              >
-                자세히 보기
-              </a>
+              <div class="cardnews-card">
+                <div class="cardnews-card-header">
+                  <span class="cardnews-tab">2026-4</span>
+                </div>
+                <div class="cardnews-card-body">
+                  <img src="./cardnews/2026-4.jpg" alt="2026 카드4" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <button class="cardnews-prev" aria-label="Previous">‹</button>
+        <button class="cardnews-next" aria-label="Next">›</button>
+      </div>
 
-        <!-- 모바일 슬라이더 -->
-        <div class="cardnews-slider mobile-only">
+      <!-- 웹 버전 -->
+      <div class="cardnews-left">
+        <div class="cardnews-slider-wrapper" data-slider="2020">
           <div class="cardnews-slider-track">
             <div class="cardnews-slider-item">
-              <span class="year-badge-mobile">2020</span>
+              <span class="year-badge">2020</span>
               <img src="./cardnews/2020br.jpg" alt="2020년 카드뉴스" />
             </div>
-            <div class="cardnews-slider-item">
-              <span class="year-badge-mobile new">2026-1</span>
-              <img src="./cardnews/2026-1.jpg" alt="2026 카드1" />
-            </div>
-            <div class="cardnews-slider-item">
-              <span class="year-badge-mobile new">2026-2</span>
-              <img src="./cardnews/2026-2.jpg" alt="2026 카드2" />
-            </div>
-            <div class="cardnews-slider-item">
-              <span class="year-badge-mobile new">2026-3</span>
-              <img src="./cardnews/2026-3.jpg" alt="2026 카드3" />
-            </div>
-            <div class="cardnews-slider-item">
-              <span class="year-badge-mobile new">2026-4</span>
-              <img src="./cardnews/2026-4.jpg" alt="2026 카드4" />
-            </div>
-          </div>
-          <button class="cardnews-prev">‹</button>
-          <button class="cardnews-next">›</button>
-          <div class="cardnews-dots"></div>
-
-          <!-- 색상 설명 -->
-          <div class="color-explanation">
-            <div class="color-box">
-              <span class="color-circle blue"></span>
-              <p>#0066B3</p>
-            </div>
-            <div class="color-box">
-              <span class="color-circle yellow"></span>
-              <p>#34BAF</p>
-            </div>
-            <div class="color-box">
-              <span class="color-circle orange"></span>
-              <p>#B1B1B1</p>
-            </div>
-          </div>
-
-          <div class="cardnews-bottom">
-            <h5>학교 마크를 참고하여, 대표적인 색상으로 카드뉴스 생성</h5>
-            <a
-              href="https://www.figma.com/design/xNFk8SkskhUvyCMr5epHWg/Cardnews?node-id=1-6&t=340ePv0L7XDpMafe-0"
-              target="_blank"
-              class="cardnews-link-btn"
-            >
-              자세히 보기
-            </a>
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- 6페이지: Poster -->
+      <div class="cardnews-right">
+        <div class="cardnews-slider-wrapper" data-slider="2026">
+          <div class="cardnews-slider-track">
+            <div class="cardnews-slider-item">
+              <div class="cardnews-grid-2026">
+                <div class="cardnews-card">
+                  <div class="cardnews-card-header">
+                    <span class="cardnews-tab">2026-1</span>
+                  </div>
+                  <div class="cardnews-card-body">
+                    <img src="./cardnews/2026-1.jpg" alt="2026 카드1" />
+                  </div>
+                </div>
+                <div class="cardnews-card">
+                  <div class="cardnews-card-header">
+                    <span class="cardnews-tab">2026-2</span>
+                  </div>
+                  <div class="cardnews-card-body">
+                    <img src="./cardnews/2026-2.jpg" alt="2026 카드2" />
+                  </div>
+                </div>
+                <div class="cardnews-card">
+                  <div class="cardnews-card-header">
+                    <span class="cardnews-tab">2026-3</span>
+                  </div>
+                  <div class="cardnews-card-body">
+                    <img src="./cardnews/2026-3.jpg" alt="2026 카드3" />
+                  </div>
+                </div>
+                <div class="cardnews-card">
+                  <div class="cardnews-card-header">
+                    <span class="cardnews-tab">2026-4</span>
+                  </div>
+                  <div class="cardnews-card-body">
+                    <img src="./cardnews/2026-4.jpg" alt="2026 카드4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="cardnews-prev" aria-label="Previous">‹</button>
+          <button class="cardnews-next" aria-label="Next">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- 색상/설명/버튼은 여기 한 번만 -->
+    <div class="color-explanation">
+      <div class="color-box">
+        <span class="color-circle blue"></span>
+        <p>#0066B3</p>
+      </div>
+      <div class="color-box">
+        <span class="color-circle yellow"></span>
+        <p>#34BAF</p>
+      </div>
+      <div class="color-box">
+        <span class="color-circle gray"></span>
+        <p>#B1B1B1</p>
+      </div>
+    </div>
+
+    <div class="cardnews-bottom">
+      <h5>학교 마크를 참고하여, 대표적인 색상으로 카드뉴스 생성</h5>
+      <a href="https://www.figma.com/design/xNFk8SkskhUvyCMr5epHWg/Cardnews?node-id=1-6&t=340ePv0L7XDpMafe-0" target="_blank" class="cardnews-link-btn">
+        자세히 보기
+      </a>
+    </div>
+  </div>
+</section>
+
+      <!-- ===================================
+           PAGE 6: POSTER DESIGN
+           =================================== -->
       <section class="page poster">
         <h2>Poster Design</h2>
 
@@ -264,9 +310,7 @@
           <img src="./figma-icon.png" alt="Figma" />
         </button>
 
-        <!-- removed poster preview button; modal opens from the top Figma button -->
-
-        <!-- 슬라이더 -->
+        <!-- 포스터 슬라이더 -->
         <div class="poster-slider">
           <div class="poster-slider-track">
             <div
@@ -321,15 +365,14 @@
           <div class="poster-dots"></div>
         </div>
 
-        <!-- Figma 팝업 -->
+        <!-- Figma 팝업 (모달) -->
         <div class="poster-figma-backdrop" aria-hidden="true"></div>
         <div class="poster-figma-modal" role="dialog" aria-modal="true">
           <button class="poster-figma-close" aria-label="Close">×</button>
-          <!-- Replace the src below with your preview image file when ready -->
           <img
             class="poster-figma-preview"
             src="./poster/Preview.jpg"
-            alt="Poster preview (replace with your image)"
+            alt="Poster preview"
           />
           <div class="poster-figma-actions">
             <a
@@ -337,14 +380,15 @@
               href="#"
               target="_blank"
               rel="noopener"
-              >Open in Figma</a
-            >
+            >Figma</a>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- JavaScript -->
+    <!-- ===================================
+         SCRIPTS
+         =================================== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="index.js"></script>
   </body>

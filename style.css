@@ -39,8 +39,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px;
+  padding: 60px 40px;
   background: var(--bg);
+  overflow: hidden;
 }
 
 
@@ -100,6 +101,41 @@ body {
   font-size: 14px;
 }
 
+.ml1 {
+  font-weight: 900;
+  font-size: 3.5em;
+}
+
+.ml1 .letter {
+  line-height: 1em;
+}
+
+.ml1 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml1 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background-color: red;
+  transform-origin: 0 0;
+}
+
+.ml1 .line1 {
+  top: 0;
+}
+
+.ml1 .line2 {
+  bottom: 0;
+}
+
 
 /* ===================================
    PAGE 2: ABOUT
@@ -151,11 +187,11 @@ body {
   position: absolute;
   top: 40px;
   left: 40px;
-  background: rgba(17, 17, 17, 0.75);
+  background: rgba(17, 17, 17, 0.9);
   color: #ffffff;
   padding: 20px 26px;
   border-radius: 14px;
-  z-index: 10;
+  z-index: 9999;
 }
 
 .project-link {
@@ -189,7 +225,14 @@ body {
   font-weight: 600;
 }
 
-/* Project Slider */
+.project-link.slider {
+  position: relative;
+  max-width: 900px;
+  width: 90%;
+  margin: 24px auto 0;
+  overflow: hidden;
+}
+
 .project-link.slider .slides {
   display: flex;
   transition: transform 0.5s ease;
@@ -202,6 +245,12 @@ body {
   position: relative;
 }
 
+.project-link.slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .project-link.slider .slide span {
   position: absolute;
   left: 50%;
@@ -209,7 +258,7 @@ body {
   transform: translateX(-50%);
   background: rgba(0,0,0,0.6);
   color: #fff;
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 6px;
   font-size: 14px;
 }
@@ -219,26 +268,26 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 24px;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   color: #fff;
-  border-radius: 50%;
+  border: none;
   width: 40px;
   height: 40px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 10;
-  border: none;
+  font-size: 20px;
 }
 
-.project-link.slider .prev { 
-  left: 10px; 
+.project-link.slider .prev {
+  left: 12px;
 }
 
-.project-link.slider .next { 
-  right: 10px; 
+.project-link.slider .next {
+  right: 12px;
 }
 
 .project-link.slider .dots {
@@ -263,30 +312,42 @@ body {
   background: #fff;
 }
 
-/* Figma Button */
 .figma-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 30;
   display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 900;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  border-radius: 12px;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
   border: none;
-  background: #111;
+  background: rgba(17, 17, 17, 0.8);
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
+  transition: all 0.18s ease;
+  width: 36px;
+  height: 36px;
+  gap: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.figma-btn:hover {
+  background: rgba(17, 17, 17, 1);
+  transform: scale(1.03);
 }
 
 .figma-btn img {
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
 }
 
-/* Figma Popup */
+.figma-btn.show {
+  display: flex;
+}
+
 .figma-backdrop {
   position: fixed;
   inset: 0;
@@ -309,14 +370,15 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
   background: #fff;
-  width: 80vw;
-  max-width: 900px;
-  height: 80vh;
+  width: 60vw;
+  max-width: 600px;
+  height: 60vh;
   border-radius: 16px;
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s ease;
   z-index: 9999;
+  overflow: auto;
 }
 
 .figma-modal.active {
@@ -329,6 +391,8 @@ body {
   width: 100%;
   height: auto;
   border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .figma-close {
@@ -343,7 +407,7 @@ body {
 
 
 /* ===================================
-   PAGE 4: ARTWORK (책 넘김)
+   PAGE 4: ARTWORK
    =================================== */
 .artwork {
   flex-direction: column;
@@ -356,6 +420,9 @@ body {
   margin: 40px auto;
   position: relative;
   overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .artwork-slides {
@@ -379,6 +446,7 @@ body {
     -2px 0 8px rgba(0, 0, 0, 0.05);
   border-left: 3px solid #e5e5e5;
   z-index: auto;
+  aspect-ratio: 1;
 }
 
 .artwork-slide::before {
@@ -425,7 +493,8 @@ body {
 .artwork-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  aspect-ratio: 1;
+  object-fit: contain;
   border-radius: 20px;
   pointer-events: none;
   padding: 30px;
@@ -446,7 +515,6 @@ body {
   opacity: 0;
 }
 
-/* Album Preview Button & Popup */
 .album-preview-btn {
   position: absolute;
   bottom: 50px;
@@ -513,12 +581,12 @@ body {
   display: none;
 }
 
-/* 클릭 유도 말풍선 */
 .click-bubble {
   position: absolute;
-  top: 50%;
-  right: -100px;
-  transform: translateY(-50%);
+  bottom: -70px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   z-index: 200;
   animation: bubble-bounce 1.5s ease-in-out infinite;
 }
@@ -534,23 +602,23 @@ body {
   letter-spacing: 1px;
   box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
   position: relative;
+  text-align: center;
 }
 
-/* 말풍선 꼬리 */
 .click-bubble span::before {
   content: '';
   position: absolute;
-  left: -8px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid #FF6B6B;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #FF6B6B;
+  border-top: none;
 }
 
-/* 통통 튀는 애니메이션 */
 @keyframes bubble-bounce {
   0%, 100% {
     transform: translateY(-50%) scale(1);
@@ -560,33 +628,12 @@ body {
   }
 }
 
-/* 클릭하면 사라지는 효과 */
 .click-bubble.hidden {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
-/* 모바일 */
-@media (max-width: 768px) {
-  .click-bubble {
-    top: auto;
-    bottom: -60px;
-    right: 50%;
-    transform: translateX(50%);
-  }
-  
-  .click-bubble span::before {
-    left: 50%;
-    top: -8px;
-    transform: translateX(-50%);
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #FF6B6B;
-    border-top: none;
-  }
-}
-/* 처음으로 돌아가기 버튼 */
 .reset-button {
   position: absolute;
   bottom: -80px;
@@ -618,156 +665,214 @@ body {
   box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5);
 }
 
-/* 모바일 */
-@media (max-width: 768px) {
-  .reset-button {
-    bottom: -120px;
-    padding: 10px 24px;
-    font-size: 14px;
-  }
-}
-
 
 /* ===================================
-   PAGE 5: CARD NEWS COMPARISON
+   PAGE 5: CARD NEWS
    =================================== */
-.album {
+.cardnews {
   flex-direction: column;
   background: #ffffff;
-  padding: 60px 40px;
+  padding: 60px 40px 180px 40px;
   position: relative;
   z-index: 10;
   isolation: isolate;
-  overflow: hidden;
+  overflow-y: auto;
+  justify-content: flex-start;
 }
 
-.album h2 {
+.cardnews h2 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 10px;
   text-align: center;
 }
 
-.album-subtitle {
+.cardnews .album-subtitle {
   font-size: 18px;
   color: #666;
   margin-bottom: 40px;
   text-align: center;
 }
 
-/* 데스크탑/모바일 전환 */
-.desktop-only {
+.cardnews-wrapper {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.mobile-only {
+.cardnews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mobile-slider {
+  display: flex !important;
+}
+
+.cardnews-left,
+.cardnews-right {
   display: none;
 }
 
-.cardnews-compare {
-  gap: 50px;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 1400px;
+.cardnews-slider-wrapper {
+  position: relative;
   width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fafafa;
+  border: 2px solid #e5e5e5;
+}
+
+.cardnews-slider-track {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.cardnews-slider-item {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cardnews-slider-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.cardnews-grid-2026 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 740px;
+}
+
+.cardnews-card {
+  aspect-ratio: 1/1;
+  border: 4px solid #0066B3;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 102, 179, 0.2);
+}
+
+.cardnews-card-header {
+  display: none;
+}
+
+.cardnews-tab {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0066B3;
+  text-transform: uppercase;
+}
+
+.cardnews-card-body {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-.cardnews-item.old {
-  flex: 0 0 300px;
-  max-width: 300px;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-.cardnews-item.new {
-  flex: 1;
-  max-width: 800px;
-  max-height: 80vh;
-  overflow-y: auto;
-  padding-bottom: 40px;
-}
-
-.cardnews-item {
-  position: relative;
+.cardnews-card-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .year-badge {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  background: rgba(17, 17, 17, 0.85);
+  top: 18px;
+  left: 18px;
+  background: rgba(17, 17, 17, 0.9);
   color: #fff;
-  padding: 8px 16px;
+  padding: 8px 12px;
+  font-size: 13px;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: 700;
-  z-index: 10;
+  font-weight: 800;
+  z-index: 12;
 }
 
-.year-badge.new {
-  background: #4CAF50;
+.cardnews-prev,
+.cardnews-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
 }
 
-.cardnews-item.old img {
-  width: 100%;
-  height: auto;
-  max-height: 70vh;
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s ease;
+.cardnews-prev:hover,
+.cardnews-next:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
 
-.cardnews-item.old img:hover {
-  transform: scale(1.02);
+.cardnews-prev {
+  left: 10px;
 }
 
-.cardnews-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-top: 30px;
-  margin-bottom: 20px;
+.cardnews-next {
+  right: 10px;
 }
 
-.cardnews-grid img {
-  width: 100%;
-  height: auto;
-  max-height: 260px;  
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  transition: transform 0.4s ease;
+.cardnews-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.cardnews-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+.cardnews-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-/* 색상 설명 박스 */
+.cardnews-dot.active {
+  background: #0066B3;
+}
+
 .color-explanation {
   display: flex;
+  gap: 40px;
   justify-content: center;
-  gap: 30px;
-  margin-top: 25px;
-  margin-bottom: 10px;
-  padding-top: 0px;
-  border-top: 2px solid #e5e5e5;
+  margin-top: 40px;
 }
 
 .color-box {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
 .color-circle {
-  width: 24px;
-  height: 24px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  display: inline-block;
 }
 
 .color-circle.blue {
@@ -775,144 +880,44 @@ body {
 }
 
 .color-circle.yellow {
-  background: #F4BF4F;
+  background: #34CAFF;
 }
 
-.color-circle.orange {
+.color-circle.gray {
   background: #B1B1B1;
 }
 
 .color-box p {
   font-size: 14px;
   font-weight: 600;
-  margin: 0;
+  color: #333;
 }
 
-.cardnews-item h5,
-.cardnews-slider h5 {
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-  margin-top: 15px;
-  margin-bottom: 0;
-  line-height: 1.6;
-  font-weight: 500;
-}
-
-/* 모바일 슬라이더 */
-.cardnews-slider {
-  position: relative;
-  max-width: 90vw;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.cardnews-slider-track {
+.cardnews-bottom {
   display: flex;
-  transition: transform 0.5s ease;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 }
 
-.cardnews-slider-item {
-  min-width: 100%;
-  position: relative;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-
-.cardnews-slider-item img {
-  width: 100%;
-  height: auto;
-  max-height: 65vh;
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.year-badge-mobile {
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  background: rgba(17, 17, 17, 0.85);
+.cardnews-btn {
+  padding: 12px 24px;
+  background: #0066B3;
   color: #fff;
-  padding: 6px 12px;
+  border: none;
   border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  z-index: 10;
-}
-
-.year-badge-mobile.new {
-  background: #4CAF50;
-}
-
-.cardnews-prev,
-.cardnews-next {
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cardnews-prev {
-  left: 5px;
-}
-
-.cardnews-next {
-  right: 5px;
-}
-
-.cardnews-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 15px;
-}
-
-.cardnews-dots .dot {
-  width: 8px;
-  height: 8px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-}
-
-.cardnews-dots .dot.active {
-  background: #111;
-}
-/* h5와 버튼을 감싸는 컨테이너 */
- .cardnews-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 15px;
-}
-
-.cardnews-item h5,
-.cardnews-slider h5 {
-  text-align: center;
   font-size: 14px;
-  color: #666;
-  margin: 0;
-  line-height: 1.6;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
+.cardnews-btn:hover {
+  background: #0052a3;
+}
 
-/* 카드뉴스 링크 버튼 */
 .cardnews-link-btn {
   display: inline-block;
   padding: 10px 24px;
@@ -934,134 +939,116 @@ body {
   background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
-
-/* ===================================
-   UTILITY
-   =================================== */
-.fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity .8s ease, transform .8s ease;
+.year-badge-mobile {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  background: rgba(17, 17, 17, 0.85);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 10;
 }
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-/* ===================================
-   MOBILE STYLES
-   =================================== */
-@media (max-width: 768px) {
-  /* Layout */
-  .page {
-    padding: 40px;
-    flex-direction: column;
+@media (min-width: 769px) {
+  .cardnews-left,
+  .cardnews-right {
+    display: flex;
   }
 
-  /* Navigation */
-  .dots-nav {
-    right: 16px;
-  }
-
-  /* About */
-  .about {
-    gap: 30px;
-  }
-
-  /* Figma */
-  .figma-btn {
+  .mobile-slider {
     display: none !important;
   }
 
-  /* Artwork */
-  .artwork-slider {
-    width: 90vw;
-    height: 90vw;
-    max-width: 500px;
-    max-height: 500px;
-    overflow: hidden;
+  .cardnews-container {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+    margin-bottom: 30px;
   }
 
-  .album-preview-btn {
-    bottom: 30px;
-    right: 30px;
-    padding: 10px 20px;
-    font-size: 13px;
-  }
-  
-  .album-popup {
-    width: 90vw;
-    max-width: 90vw;
-    padding: 20px;
+  .cardnews-left {
+    width: 360px;
+    flex: 0 0 360px;
   }
 
-  /* Card News - 모바일 슬라이더로 전환 */
-  .desktop-only {
-    display: none !important;
+  .cardnews-right {
+    flex: 1;
+    max-width: 800px;
   }
 
-  .mobile-only {
-    display: block !important;
-  }
-
-  .album {
-    padding: 40px 10px;
-    overflow: hidden;
-  }
-
-  .color-explanation {
-    gap: 12px;
+  .cardnews-right .color-explanation,
+  .cardnews-right .cardnews-bottom {
+    width: 100%;
     margin-top: 20px;
-    padding-top: 15px;
   }
 
-  .color-box {
-    gap: 6px;
+  .cardnews-slider-wrapper[data-slider="2020"] {
+    height: 78vh;
+    max-height: 900px;
+    padding: 28px;
+    border-radius: 18px;
+    overflow-y: auto;
   }
 
-  .color-circle {
-    width: 18px;
-    height: 18px;
+  .cardnews-slider-wrapper[data-slider="2026"] {
+    height: auto;
+    overflow: visible;
+    background: transparent;
+    border: none;
+    padding: 0;
   }
 
-  .color-box p {
-    font-size: 12px;
+  .cardnews-slider-wrapper[data-slider="2026"] .cardnews-slider-track {
+    transform: translateX(0) !important;
+  }
+
+  .cardnews-slider-wrapper[data-slider="2026"] .cardnews-slider-item {
+    min-width: 100%;
+    padding: 0;
+  }
+
+  .cardnews-slider-wrapper[data-slider="2026"] .cardnews-prev,
+  .cardnews-slider-wrapper[data-slider="2026"] .cardnews-next {
+    display: none;
+  }
+
+  .cardnews-dots[data-slider="2026"] {
+    display: none !important;
   }
 }
-.cardnews-bottom {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-  }
 
-  .cardnews-link-btn {
-    padding: 10px 20px;
-    font-size: 13px;
-    margin-top: 0;
-  }
 
-  /* ===================================
+/* ===================================
    PAGE 6: POSTER DESIGN
    =================================== */
 .poster {
   flex-direction: column;
   background: #ffffff;
-  padding: 60px 40px;
+  padding: 60px 40px 40px 40px;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
+  margin-top: 40px;
 }
 
 .poster h2 {
-  font-size: 36px;
+  font-size: 48px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   text-align: center;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  z-index: 10;
+  display: block;
+  width: auto;
+  padding: 0;
 }
 
-/* Figma 버튼 (상단 고정) */
 .poster-figma-btn-top {
   position: absolute;
   top: 40px;
@@ -1088,18 +1075,16 @@ body {
 }
 
 .poster-figma-btn-top img {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
-/* 데스크탑 레이아웃 */
 .poster-layout {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* 대표 포스터 (가로형, 크게) */
 .poster-hero {
   position: relative;
   margin-bottom: 40px;
@@ -1129,17 +1114,8 @@ body {
   border-radius: 8px;
   font-size: 14px;
   font-weight: 700;
-.poster-preview-btn {
-  margin-left: 10px;
-  background: #111;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
-/* Modal action area */
 .poster-figma-actions {
   text-align: center;
   margin-top: 12px;
@@ -1153,6 +1129,8 @@ body {
   border-radius: 8px;
   text-decoration: none;
 }
+
+.poster-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -1178,7 +1156,6 @@ body {
   display: block;
 }
 
-/* 가로 + 정사각형 */
 .poster-bottom {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -1197,7 +1174,6 @@ body {
   object-fit: cover;
 }
 
-/* 모바일 슬라이더 */
 .poster-slider {
   position: relative;
   max-width: 90vw;
@@ -1215,6 +1191,7 @@ body {
   position: relative;
   padding: 0 10px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .poster-slide img {
@@ -1224,6 +1201,11 @@ body {
   object-fit: contain;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.poster-slide img:hover {
+  transform: scale(1.02);
 }
 
 .poster-badge-mobile {
@@ -1291,7 +1273,6 @@ body {
   background: #111;
 }
 
-/* Figma 팝업 */
 .poster-figma-backdrop {
   position: fixed;
   inset: 0;
@@ -1357,10 +1338,196 @@ body {
   z-index: 10;
 }
 
-/* 모바일 스타일 */
+
+/* ===================================
+   UTILITY
+   =================================== */
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===================================
+   MOBILE STYLES
+   =================================== */
 @media (max-width: 768px) {
+  .page {
+    padding: 40px;
+    flex-direction: column;
+  }
+
+  .dots-nav {
+    right: 16px;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .about {
+    gap: 30px;
+  }
+
+  .artwork-slider {
+    width: 90vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+    overflow: visible;
+    position: relative;
+    margin-bottom: 80px;
+    padding-bottom: 80px;
+  }
+
+  .album-preview-btn {
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  
+  .album-popup {
+    width: 90vw;
+    max-width: 90vw;
+    padding: 20px;
+  }
+
+  .click-bubble {
+    display: block !important;
+  }
+
+  .cardnews {
+    padding: 40px 20px 180px 20px;
+    overflow-y: auto;
+  }
+
+  .cardnews h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .cardnews .album-subtitle {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .cardnews-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+
+  .cardnews-slider-wrapper.mobile-slider {
+    height: auto !important;
+    padding: 0 12px;
+  }
+
+  .mobile-slider .cardnews-slider-item:first-child {
+    height: 78vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 2px solid #e5e5e5;
+  }
+
+  .mobile-slider .cardnews-slider-item:first-child img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .mobile-slider .cardnews-slider-item:last-child {
+    padding: 12px 8px;
+    height: auto;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-slider .cardnews-grid-2026 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 94%;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .mobile-slider .cardnews-card {
+    aspect-ratio: 1/1;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .mobile-slider {
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  .mobile-slider .cardnews-prev,
+  .mobile-slider .cardnews-next {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 50 !important;
+    display: flex !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    color: #fff !important;
+    border: none !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    font-size: 24px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.3s ease !important;
+  }
+
+  .mobile-slider .cardnews-prev {
+    left: 10px !important;
+  }
+
+  .mobile-slider .cardnews-next {
+    right: 10px !important;
+  }
+
+  .mobile-slider .cardnews-prev:hover,
+  .mobile-slider .cardnews-next:hover {
+    background: rgba(0, 0, 0, 0.9) !important;
+  }
+
+  .cardnews-slider-wrapper {
+    height: 400px;
+  }
+
   .poster {
     padding: 40px 20px;
+  }
+
+  .poster h2 {
+    font-size: 36px;
+    top: 20px;
+    left: 20px;
+    right: 20px;
   }
 
   .poster-figma-btn-top {
@@ -1386,206 +1553,35 @@ body {
   .poster-bottom {
     grid-template-columns: 1fr;
   }
-}
 
-/* ===== Styles moved from index.html <style> block ===== */
+  .poster-badge-mobile {
+    padding: 10px 16px;
+    font-size: 16px;
+    top: 30px;
+    left: 40px;
+  }
 
-.ml1 {
-  font-weight: 900;
-  font-size: 3.5em;
-}
+  .click-bubble {
+    bottom: -70px;
+    right: auto;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%);
+  }
+  
+  .click-bubble span::before {
+    left: 50%;
+    top: -8px;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FF6B6B;
+    border-top: none;
+  }
 
-.ml1 .letter {
-  line-height: 1em;
+  .reset-button {
+    bottom: -120px;
+    padding: 10px 24px;
+    font-size: 14px;
+  }
 }
-
-.ml1 .text-wrapper {
-  position: relative;
-  display: inline-block;
-  padding-top: 0.1em;
-  padding-right: 0.05em;
-  padding-bottom: 0.15em;
-}
-
-.ml1 .line {
-  opacity: 0;
-  position: absolute;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  background-color: red;
-  transform-origin: 0 0;
-}
-
-.ml1 .line1 {
-  top: 0;
-}
-.ml1 .line2 {
-  bottom: 0;
-}
-
-/* project-link slider styles */
-.project-link.slider {
-  position: relative;
-  max-width: 720px;
-  margin: 24px auto 0;
-  overflow: hidden;
-}
-
-.project-link.slider .slides {
-  display: flex;
-  transition: transform 0.5s ease;
-  will-change: transform;
-}
-
-.project-link.slider .slide {
-  min-width: 100%;
-  box-sizing: border-box;
-  position: relative;
-}
-
-.project-link.slider img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.project-link.slider .slide span {
-  position: absolute;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.project-link.slider .prev,
-.project-link.slider .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project-link.slider .prev {
-  left: 12px;
-}
-.project-link.slider .next {
-  right: 12px;
-}
-
-.project-link.slider .dots {
-  position: absolute;
-  left: 50%;
-  bottom: 8px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-}
-
-.project-link.slider .dot {
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.project-link.slider .dot.active {
-  background: #fff;
-}
-
-/* poster layout styles */
-.poster-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.poster-grid .poster-item {
-  width: 100%;
-}
-
-.poster-bottom {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.poster-bottom .poster-item {
-  width: 100%;
-}
-
-.poster-bottom .poster-item.horizontal {
-  grid-column: auto;
-}
-
-.poster-bottom .poster-item.square {
-  grid-column: auto;
-}
-
-.poster-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* poster figma modal styles (moved from index.html) */
-.poster-figma-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.poster-figma-modal {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  display: none;
-  z-index: 1001;
-  max-width: 90%;
-  max-height: 90%;
-  overflow: auto;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-}
-
-.poster-figma-modal img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.poster-preview-btn {
-  margin-left: 10px;
-  background: #111;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* End moved styles */
-
