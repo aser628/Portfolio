@@ -281,6 +281,11 @@ body {
   cursor: pointer;
 }
 
+.figma-btn img {
+  width: 14px;
+  height: 14px;
+}
+
 /* Figma Popup */
 .figma-backdrop {
   position: fixed;
