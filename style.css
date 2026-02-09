@@ -319,6 +319,32 @@ body {
   .work-list li {
     text-align: left;
   }
+
+  /* 모바일 전용: 전체 페이지 스냅을 비활성화하고 자연 스크롤 사용 */
+  /* 강제 오버라이드: 스크롤 스냅 완전 해제, 터치 스크롤 향상 */
+  html, body {
+    height: auto !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+
+  .container {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    scroll-snap-type: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .page {
+    scroll-snap-align: none !important;
+  }
+
+  /* 모바일에서 점 네비게이션은 숨김 */
+  .dots-nav {
+    display: none !important;
+  }
 }
 
 
