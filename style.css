@@ -34,14 +34,15 @@ body {
 }
 
 .page {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   scroll-snap-align: start;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 60px 40px;
   background: var(--bg);
-  overflow: hidden;
+  overflow: visible;
 }
 
 
@@ -272,6 +273,51 @@ body {
   .profile-img {
     width: 200px;
     height: 240px;
+  }
+
+  /* 모바일에서 페이지 내용이 잘리지 않도록 높이/오버플로우 조정 */
+  .page {
+    min-height: 100vh;
+    height: auto;
+    padding: 40px 20px;
+    align-items: flex-start;
+    overflow: visible;
+  }
+
+  /* 모바일에서 1,2페이지(Hero, About) 가운데 정렬 */
+  .hero,
+  .about {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 8vw, 48px);
+    line-height: 1.05;
+  }
+
+  /* About 내부 요소 가운데 정렬 보정 */
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .about-info {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  /* 목록은 가독성을 위해 왼쪽 정렬 유지 */
+  .about-info,
+  .about-group,
+  .about-group p,
+  .work-list,
+  .work-list li {
+    text-align: left;
   }
 }
 
